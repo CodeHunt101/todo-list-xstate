@@ -7,16 +7,16 @@
           "xstate.init": { type: "xstate.init" };
         };
         invokeSrcNameMap: {
-          
+          "loadTodos": "done.invoke.Todo machine.Loading Todos:invocation[0]";
         };
         missingImplementations: {
           actions: never;
           delays: never;
           guards: never;
-          services: never;
+          services: "loadTodos";
         };
         eventsCausingActions: {
-          "consoleLogTodos": "Todos loaded";
+          
         };
         eventsCausingDelays: {
           
@@ -25,7 +25,7 @@
           
         };
         eventsCausingServices: {
-          
+          "loadTodos": "xstate.init";
         };
         matchesStates: "Loading Todos" | "Loading todos errored" | "Todos Loaded";
         tags: never;
