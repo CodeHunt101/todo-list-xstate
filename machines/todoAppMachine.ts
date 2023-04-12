@@ -2,20 +2,21 @@ import { actions, assign, createMachine } from "xstate";
 
 export const todosMachine = createMachine(
   {
-    /** @xstate-layout N4IgpgJg5mDOIC5QBUD2FUAIC2BDAxgBYCWAdmAHQAyquEZUmaGsAxM6rJgDa0SQBtAAwBdRKAAOnYgBdiqUuJAAPRACYAjGooAWAOwA2AKwG1RgDQgAnog06jFMwF8nljjgIly1PgybpOVho6PxkArgAzXGJuQVElKVhZeUUkFUQAWj01SxsENSEDCiMXVxBSdDgldzwiMjAE6TkFJVUEDK0hXMQTYpc3AI8672D6UkYOeDTE5Ja0tp0ADm6EOx1+kBrPeopJzFHIRqTm1NAF5et1PUW+sq3hylHQ8MwwACc31DfD6aaU1sQSxWOg0AGZSk4gA */
+    /** @xstate-layout N4IgpgJg5mDOIC5QBUD2FUAIC2BDAxgBYCWAdmAHQAyquEZUmaGsAxBuRWQG6oDWlZljxEylGnQZN0qWAh6p8uAC7FUpANoAGALradiUAAdZxVesMgAHogBMADgBsFewGYArAE5XAdncAaEABPRABaRwAWCkcARh8Y+z8AXyTAoRwCEk4JelJGITYwACci1CKKIwAbFQAzMuwKdJEs8Vpc-Jk5BSVzTV19SxNYMzVSSxsEUM8KXwDgsPiKTy1bVwjZlNSQUnQ4SybMsUHTXvGwmMdnLS0fexjbOZDJmK8KCJW1ja2D0Wy2qQKx2GpyQ1kQMVctgoDmWjgegSeEK0M1cnns62S3xkGV+gk6mBykCBIwsoImkJib3sWgijkSj0QrhilPcTIeKTS2OaYmo-zymGU+OKpSKRNBQxJYzJ5wSFGut3uDIQEWZLi09i8XxSQA */
+    tsTypes: {} as import("./todoAppMachine.typegen").Typegen0,
     id: "Todo machine",
     initial: "Loading Todos",
     schema: {
-      // events: {} as
-      //   | { type: "Todos loaded"; todos: string[] }
-      //   | { type: "Loading todos failed"; errorMessage: string },
       services: {} as {
-        'loadTodos': {
-          data: string[]
-        }
-      }
+        loadTodos: {
+          data: string[];
+        };
+      },
     },
-    tsTypes: {} as import("./todoAppMachine.typegen").Typegen0,
+    context: {
+      todos: [] as string[],
+      errorMessage: undefined as string | undefined,
+    },
     states: {
       "Loading Todos": {
         invoke: {
@@ -23,18 +24,34 @@ export const todosMachine = createMachine(
           onDone: [
             {
               target: "Todos Loaded",
+              actions: "assignTodosToContext",
             },
           ],
           onError: [
             {
-              target: "Loading todos errored"
-            }
+              target: "Loading todos errored",
+              actions: "assignErrorToContext",
+            },
           ],
         },
       },
 
       "Todos Loaded": {},
       "Loading todos errored": {},
+    },
+  },
+  {
+    actions: {
+      assignTodosToContext: assign((context, event) => {
+        return {
+          todos: event.data,
+        };
+      }),
+      assignErrorToContext: assign((context, event) => {
+        return {
+          errorMessage: (event.data as Error).message,
+        };
+      }),
     },
   }
 );
