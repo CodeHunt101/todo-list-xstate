@@ -13,8 +13,8 @@ export default function Home() {
         todos.add(context.createNewTodoFormInput);
       },
       deleteTodo:async (context, event) => {
-        throw Error('Oh no!')
-        // todos.delete(event.todo)
+        // throw Error('Oh no!')
+        todos.delete(event.todo)
       }
     },
   });

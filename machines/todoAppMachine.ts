@@ -2,7 +2,7 @@ import { actions, assign, createMachine } from "xstate";
 
 export const todosMachine = createMachine(
   {
-    /** @xstate-layout N4IgpgJg5mDOIC5QBUD2FUAIC2BDAxgBYCWAdmAHQAyquEZUmaGsAxBuRWQG6oDWlZljxEylGnQZN0qWAh6p8uAC7FUpANoAGALradiUAAdZxVesMgAHogC0ATgBsFAMwBWAIxvHWgBwAWAHZfRx9AgBoQAE87D3tfCi0Xey1Hf2T7F38tNwBfXMihHAISTgl6UkYhNjAAJ1rUWoojABsVADNG7AoikVLxWgqqmTkFJXNNXX1LE1gzNVJLGwQHZ3cvHwDg0K0I6LsAJnsPCn97A49fFKdvN0D8wpli0U5qzHLIVgBhWrAVMEw5AA7tMkCBZvMLGDlrYPActBQ3MktGc0iErr5fJEYggDoEER5soEjnE3H4Qg8QL0SmIeiN3oNPgARMAtMDKMCg4ymCZLOw+ZyOA4uEJaLy+QIijzYxB4hJHRz2QLHexkzGOSnUl6UH5-VSVQFgIGYZQyCgAZUIqCBUk6tWwmDIRgArspWAAxLqO0gu5SYIi4SqQLngnkLPkIOGBCjClESxxXY4uA5Y-YrQknA5nJVHTy+Qn3ApUp59Wm6lRSYEms2W622r1O12sc3OgBG2DMIYhvOhiDS-hjl0CjmHyf8jg8exxDgRKITQVVlwLmpLNM45f1jCrpowFtw3CkO9Q7HUlAUAjpGGe-QoG8rRuru-N+8PMnkpF44wW+i7YahoBhDwtAORF8RcLQ-D8RxkycGUEBcQIThCSUPATTxAmHQkVyvUt11+CsDW3GsXwNI9WDqBomlaDoukvYQ1x1fDN0NY0jz3A9SLfMYK3UH9dBmP9Fl7BBEOcDYUxFdxsknODJwSLRMkxI4lWJMUXGw+jtQoFk2WYsiODPD9+EEVctJ09lXwwd9Px4yY9H4sFu3DYTbH8NzTizNEySSSVHDgvEXAoRd-DcXxQqCcCKSLLUb3MvSZHI+pGmaNplDtboYtpOLLNQazFFsviDEcwSI1c-wQMXHJvBCRwyUyOC3MC4kXB8PEDjcA4JzyaLTNi1kLM4q8KMaT4rFgZR-goXB2g5WoAAp2oggBKVhMs4bLBqwYbfggX85h7ADDlqihFXAhCDgutw3Dc-w4LHU4vDxUJ0na4VuseHCGO0-r4qGpKdubIwwEgTBnSMPbISEw6VlCE5Lk8G7wM8FM7t8ECLpatzlWFCVUnyItSHQOBLDWsABP25zodsfF7AoeHCUanI4VTacEISexznhPEoxTDTr1pcopGqcnIdKkkgoVCU3Dg2w5QoYdvGTIU3IgjUes+rS3g+CARYO6w7GuuGwoZ9ImZRtNLgRZVaogy4XBcICkj53CBkkTbYEwbbIF1yn9ZWTrnHOJwpdkycHuyY4GcCTwxWdr670Ih8jx9-8-eVGNwP8eNEw8ZMWcOFN5ezEJvGVDC460hOtyTmsrRtA10u9X0U6hv2HecCUrn8XPzjC+2XDgzFXFQoJQvarOOo8CubyrljH1QdicpbiNR4oXx3FVTwxwnUI7qyCWlXOCcWsQ3xp6yn6l+KinU5hLPBRxnxxUlXxdj3wLgtC8LJSg8-1svzant-re2vqLFyMc15iggkza6QQ0iD06mvccio0KdSSFPfGQA */
+    /** @xstate-layout N4IgpgJg5mDOIC5QBUD2FUAIC2BDAxgBYCWAdmAHQAyquEZUmaGsAxBuRWQG6oDWlZljxEylGnQZN0qWAh6p8uAC7FUpANoAGALradiUAAdZxVesMgAHogBMAVlsV7AdgAcARltvHtgMwAbAEANCAAnoj2XhQutgH2AX5uPrb+tgC+6aFCOAQknBL0pIxCbByUCgIUOSL54rRFJTJyCkrmmroaHgZIICawZmqkljYI9j4xtgAsLlP2flMAnFqLLouhEQhzfhTejlq2HgGHi7YumdkyuaIFDVKlrGAATk+oTxRGADYqAGZv2NUrrUxNQ7sVpCx5KReG0hvp9JZ+oMLL1Rg4nK5PHtUoEQuFEGsXBQPGsAm4Fst7AlzlkQDU8iDSphCpBWABhJ5gFRgTDkADuCN6SPaI0QblsG0QHimUwCzi07j8i3Gi1V9gudKBDM4TJZEFYABEwJ8wMowILjKYRajEABaaVOaVaY72SUIDx+RwUHweKmLKZ+dz2RYeDX0m6UDlc1Tg-mYZQyCgAZUIqD5Uj+T2wmDIRgArspWAAxf450j55SYIi4YqQC19K1DUUIQOLChJbxaLQzeb7KZu6XuGKY+yyoLOvxhrURihRlRSOMJjDJ1Pp8GZ7O5gusJN5gBG2DM9eFTZtCESbb8XiWQdsiwCawH4yJawDUw8q1OHoCU4w1zqs6cvOsZgHy8aJkmuDcFIS6oOw6gVNC-CCNOAFzjGjCLhBUEwTIUIwvO6jwroiKNiioBolMGLuF4KT+EEbr3k4HZuFM3aLEk76TrS4ZoUBGG8qB4HLpB0HgrBjwvG8HzfMoG6An+wKcOhC5CbByY4eJeGtIRHR6CRQpkcMZ4Xu216rCk96Pvi7pLFM7bvrYWgLLMvoOL+wjapQRomgJEnlFwSFVLxII+aauEYPhii6cRPSWgM1oUQSEo2dKqwUF27gBKsVEeisHn-qFxrhVpGCSa87xfL8-wKZ5M5hX52lIbCRGdAZ8XIsZSUIA49gUPebguLMMweMk0yujZnjyl2WiDi4XZKj+PGoUVvkRVgzwVaySZGGAkCYHmRjHkZza9f1ZJDTKLijeKcxumcHi7HE8yBn4fhaINgQFUp3nFY1f6bW8rJWLAyjchQuA-GaTwABQOF2ACUrAhZwDXrZggOchAx0Jae3VnQNl0jWNd02TikzxPNsTKgsMqZLSpDoHAlgo2ApG4+R1h2h+WjEmxLpuracozbNXgkqN-rOd9XmgpI4KlOznXNraCTev68xeBNmwBNK-UkqsJLBp6srSzOuoNJAiuJVzYxKnzPhaBrBxYvdb0UAEs1Uu+AZOjSlyKTLhTrbAGNSVjVt4zbcxEm4ywPvEsczFMbhup4ba+scgZBPNH5TKbfHRqpYGwRHnOjG9j0sV2Paek5-apUqj0OGsfZKl7+cgipIHFxBq4ZqWW7KKXXVRx4j0BDKyfvhP4xXk+bi84cKysbECpWR3yn8UXwmoBpYmMCXhkcyPoysfZxw3s5hxHAxqVUpXQ3xAkMwTy46rLQH9V-etw+nfYvOBGuhdN62UqIDjOH1MaC8KQuCVFRDev01qlQ2mHS2R8lZnjAWTJyT1KZLFHNlBeed6ZAA */
     tsTypes: {} as import("./todoAppMachine.typegen").Typegen0,
     id: "Todo machine",
     initial: "Loading Todos",
@@ -45,7 +45,11 @@ export const todosMachine = createMachine(
             {
               target: "Todos Loaded",
               actions: "assignTodosToContext",
+              cond: "No todos"
             },
+            {
+              target: "Creating new todo"
+            }
           ],
           onError: [
             {
@@ -112,7 +116,12 @@ export const todosMachine = createMachine(
       }
     },
   },
-  {
+  { 
+    guards: {
+      "No todos": (context, event) => {
+        return event.data.length === 0
+      }
+    },
     actions: {
       assignTodosToContext: assign((context, event) => {
         return {
