@@ -14,7 +14,7 @@ export default function Home() {
       },
       deleteTodo:async (context, event) => {
         throw Error('Oh no!')
-        todos.delete(event.todo)
+        // todos.delete(event.todo)
       }
     },
   });
@@ -24,19 +24,23 @@ export default function Home() {
       <pre>{JSON.stringify(state.value)}</pre>
       <pre>{JSON.stringify(state.context)}</pre>
       <div>
-        {state.context.todos.map(todo => (
-          <div key={todo} style={{display: 'flex', alignItems: 'center'}}>
-            <p>{todo}</p>
-            <button onClick={()=>{
-              send({
-                type: "Delete",
-                todo
-              })
-            }}>
-              Delete
-            </button>
-          </div>
-        ))}
+        {state.matches('Todos Loaded') && (
+          <>
+            {state.context.todos.map(todo => (
+              <div key={todo} style={{display: 'flex', alignItems: 'center'}}>
+                <p>{todo}</p>
+                <button onClick={()=>{
+                  send({
+                    type: "Delete",
+                    todo
+                  })
+                }}>
+                  Delete
+                </button>
+              </div>
+            ))}
+          </>
+        )}
         {state.matches("Todos Loaded") && (
           <button
             onClick={() => {
@@ -47,6 +51,14 @@ export default function Home() {
           >
             Create new
           </button>
+        )}
+        {state.matches('Deleting todo errored') && (
+          <>
+            <p>Something went wrong: {state.context.errorMessage}</p>
+            <button onClick={()=>{
+              send('Speed up')
+            }}>Go back to list</button>
+          </>
         )}
         {state.matches("Creating new todo.Showing form input") && (
           <form onSubmit={(e) => {

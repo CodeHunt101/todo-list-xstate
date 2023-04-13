@@ -10,6 +10,7 @@
 "error.platform.Todo machine.Creating new todo.Saving todo:invocation[0]": { type: "error.platform.Todo machine.Creating new todo.Saving todo:invocation[0]"; data: unknown };
 "error.platform.Todo machine.Deleting todo:invocation[0]": { type: "error.platform.Todo machine.Deleting todo:invocation[0]"; data: unknown };
 "error.platform.Todo machine.Loading Todos:invocation[0]": { type: "error.platform.Todo machine.Loading Todos:invocation[0]"; data: unknown };
+"xstate.after(2500)#Todo machine.Deleting todo errored": { type: "xstate.after(2500)#Todo machine.Deleting todo errored" };
 "xstate.init": { type: "xstate.init" };
         };
         invokeSrcNameMap: {
